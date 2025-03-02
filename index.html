@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Love</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #ffcae9, #ffd6e7, #fae1dd);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            color: #4a4a4a;
+        }
+        .floating-element {
+            position: fixed;
+            pointer-events: none;
+            animation: float 20s linear infinite;
+            color: rgba(255, 182, 193, 0.6);
+            font-size: 24px;
+            z-index: 0;
+        }
+
+        .floating-text {
+            position: fixed;
+            pointer-events: none;
+            font-family: 'Microsoft YaHei', sans-serif;
+            color: rgba(255, 105, 180, 0.4);
+            font-size: 16px;
+            animation: fadeInOut 8s ease-in-out infinite;
+            z-index: 0;
+        }
+        .floating-element {
+            position: fixed;
+            pointer-events: none;
+            animation: float 20s linear infinite;
+            color: rgba(255, 182, 193, 0.6);
+            font-size: 24px;
+            z-index: 0;
+        }
+
+        .floating-text {
+            position: fixed;
+            pointer-events: none;
+            font-family: 'Microsoft YaHei', sans-serif;
+            color: rgba(255, 105, 180, 0.4);
+            font-size: 16px;
+            animation: fadeInOut 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(20px, 20px) rotate(180deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
+        }
+        .cherry-blossom {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #ffd1ff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fall linear forwards;
+            opacity: 0.8;
+            filter: blur(1px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            color: #fff;
+            position: relative;
+        }
+
+        .title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            opacity: 0;
+            animation: slideIn 2s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .gallery {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .gallery:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery:hover .slide.active img {
+            transform: scale(1.05);
+        }
+        transition: opacity 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .timeline-item {
+            background: rgba(255,255,255,0.95);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .timeline-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,105,180,0.2);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .timeline-photo:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .timeline-photo:hover::before {
+            opacity: 1;
+        }
+
+        .timeline-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .timeline-photo:hover img {
+            transform: scale(1.1);
+        }
+        .message {
+            background: rgba(255,255,255,0.9);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px auto;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            animation: floatUp 4s ease-in forwards;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(20px, 20px) rotate(180deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.95);
+            padding: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(255,182,193,0.3);
+            transition: all 0.3s ease;
+            font-size: 20px;
+            color: #ff69b4;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        .music-control.playing {
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-10vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .photo {
+                width: 100%;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="decorations"></div>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">致我最爱的人</h1>
+            <p class="subtitle">遇见你是我最大的幸运</p>
+        </div>
+
+        <div class="gallery" data-aos="fade-up">
+            <div class="slide active">
+                <img src="images-girl/ddd1_20250225195357.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide">
+                <img src="images-girl/ddd2_20250225195425.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide">
+                <img src="images-girl/ddd3_20250225195433.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd1_20250225195357.jpg" alt="第一次相遇">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2023年1月1日</div>
+                    <div class="timeline-text">我们的第一次相遇</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd2_20250225195425.jpg" alt="第一次约会">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2023年2月14日</div>
+                    <div class="timeline-text">难忘的第一次约会</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd3_20250225195433.jpg" alt="浪漫日落">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2023年5月20日</div>
+                    <div class="timeline-text">一起看了最浪漫的日落</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lightbox">
+            <img src="" alt="放大查看">
+        </div>
+        <div class="message">
+            <h2>亲爱的</h2>
+            <p>遇见你是我生命中最美好的事情，每一天都因为有你而变得更加美好。</p>
+        </div>
+    </div>
+
+    <div class="music-control" onclick="toggleMusic()">
+        ♫
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="love-song.mp3" type="audio/mp3">
+    </audio>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 初始化AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // 创建装饰元素
+        function createDecoration() {
+            const decorations = document.getElementById('decorations');
+            const elements = ['❤', '✨', '🌸', '💕', '✿', '♡'];
+            const texts = ['Love', '永远', '甜蜜', '幸福', '浪漫', '温暖'];
+            
+            // 创建漂浮元素
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+            element.style.left = `${Math.random() * 20}%`;
+            element.style.top = `${Math.random() * 100}vh`;
+            decorations.appendChild(element);
+            
+            // 创建漂浮文字
+            const text = document.createElement('div');
+            text.className = 'floating-text';
+            text.innerHTML = texts[Math.floor(Math.random() * texts.length)];
+            text.style.right = `${Math.random() * 20}%`;
+            text.style.top = `${Math.random() * 100}vh`;
+            decorations.appendChild(text);
+            
+            setTimeout(() => {
+                element.remove();
+                text.remove();
+            }, 8000);
+        }
+
+        setInterval(createDecoration, 2000);
+        
+        // 樱花效果
+        function createCherryBlossom() {
+            const cherry = document.createElement('div');
+            cherry.className = 'cherry-blossom';
+            cherry.style.left = Math.random() * window.innerWidth + 'px';
+            cherry.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(cherry);
+            
+            setTimeout(() => {
+                cherry.remove();
+            }, 5000);
+        }
+
+        setInterval(createCherryBlossom, 300);
+
+        // 照片轮播
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 3000);
+
+        // 点击效果
+        document.addEventListener('click', function(e) {
+            createHeart(e.clientX, e.clientY);
+        });
+
+        function createHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            heart.innerHTML = '❤';
+            heart.style.color = `rgb(${Math.random()*255},${Math.random()*100},${Math.random()*100})`;
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        // 音乐控制
+        let isPlaying = false;
+        const music = document.getElementById('bgMusic');
+
+        function toggleMusic() {
+            const musicControl = document.querySelector('.music-control');
+            if (isPlaying) {
+                music.pause();
+                musicControl.classList.remove('playing');
+            } else {
+                music.play();
+                musicControl.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        }
+        // 照片点击放大效果
+        document.querySelectorAll('.timeline-photo img, .gallery img').forEach(img => {
+            img.addEventListener('click', function() {
+                const lightbox = document.querySelector('.lightbox');
+                const lightboxImg = lightbox.querySelector('img');
+                lightboxImg.src = this.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        document.querySelector('.lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+
+        // 添加触摸手势支持
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.gallery').addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        document.querySelector('.gallery').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].clientX;
+            if (touchStartX - touchEndX > 50) {
+                nextSlide();
+            } else if (touchEndX - touchStartX > 50) {
+                prevSlide();
+            }
+        });
+
+        function prevSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+    </script>
+</body>
+</html>
