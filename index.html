@@ -351,6 +351,27 @@
             <div class="slide">
                 <img src="images-girl/ddd3_20250225195433.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
             </div>
+            <div class="slide">
+                <img src="images-girl/ddd4_20250302105301.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide">
+                <img src="images-girl/ddd5_20250302105400.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide">
+                <img src="images-girl/ddd6_20250302105418.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide">
+                <img src="images-girl/ddd7_20250302105430.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide">
+                <img src="images-girl/ddd8_20250302105441.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide">
+                <img src="images-girl/ddd9_20250302105451.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="slide">
+                <img src="images-girl/ddd10_20250302105512.jpg" alt="我们的回忆" style="width:100%;height:100%;object-fit:cover;">
+            </div>
         </div>
 
         <div class="timeline">
@@ -359,8 +380,7 @@
                     <img src="images-girl/ddd1_20250225195357.jpg" alt="第一次相遇">
                 </div>
                 <div class="timeline-content">
-                    <div class="timeline-date">2025年3月5日</div>
-                    <div class="timeline-text">我们的第一次相遇</div>
+                    <div class="timeline-text">下一页 幸福来临</div>
                 </div>
             </div>
             <div class="timeline-item" data-aos="fade-left">
@@ -368,8 +388,7 @@
                     <img src="images-girl/ddd2_20250225195425.jpg" alt="第一次约会">
                 </div>
                 <div class="timeline-content">
-                    <div class="timeline-date">2023年5月6日</div>
-                    <div class="timeline-text">难忘的第一次约会</div>
+                    <div class="timeline-text">蓄谋已久  如愿以偿</div>
                 </div>
             </div>
             <div class="timeline-item" data-aos="fade-right">
@@ -377,12 +396,66 @@
                     <img src="images-girl/ddd3_20250225195433.jpg" alt="浪漫日落">
                 </div>
                 <div class="timeline-content">
-                    <div class="timeline-date">2023年5月20日</div>
-                    <div class="timeline-text">一起看了最浪漫的日落</div>
+                    <div class="timeline-text">大大方方的为自己的心动买单</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd4_20250302105301.jpg" alt="甜蜜时光">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">每一刻都想和你在一起</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd5_20250302105400.jpg" alt="幸福瞬间">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">与你相伴的每一天都很美好</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd6_20250302105418.jpg" alt="温馨时刻">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">愿我们的故事永远继续</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd7_20250302105430.jpg" alt="浪漫时光">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">感谢你有，让生活更加精彩</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd8_20250302105441.jpg" alt="美好回忆">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">珍惜每一个与你相处的瞬间</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd9_20250302105451.jpg" alt="幸福时刻">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">你的笑容是我最大的幸福</div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-photo">
+                    <img src="images-girl/ddd10_20250302105512.jpg" alt="甜蜜约定">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-text">期待与你创造更多美好回忆</div>
                 </div>
             </div>
         </div>
-
         <div class="lightbox">
             <img src="" alt="放大查看">
         </div>
@@ -408,6 +481,66 @@
             once: true
         });
 
+        // 预加载所有图片
+        function preloadImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                const src = img.getAttribute('src');
+                if (src) {
+                    const preloadImg = new Image();
+                    preloadImg.src = src;
+                }
+            });
+        }
+
+        // 自动轮播
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (index + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // 添加触摸滑动支持
+        let touchStartX = 0;
+        const gallery = document.querySelector('.gallery');
+
+        gallery.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        gallery.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        });
+
+        // 自动轮播定时器
+        setInterval(nextSlide, 5000);
+
+        // 页面加载完成后执行
+        window.addEventListener('load', () => {
+            preloadImages();
+        });
+
         // 创建装饰元素
         function createDecoration() {
             const decorations = document.getElementById('decorations');
@@ -426,116 +559,34 @@
             const text = document.createElement('div');
             text.className = 'floating-text';
             text.innerHTML = texts[Math.floor(Math.random() * texts.length)];
-            text.style.right = `${Math.random() * 20}%`;
+            text.style.left = `${Math.random() * 80 + 20}%`;
             text.style.top = `${Math.random() * 100}vh`;
             decorations.appendChild(text);
-            
+
+            // 移除旧元素
             setTimeout(() => {
                 element.remove();
                 text.remove();
             }, 8000);
         }
 
+        // 定期创建装饰元素
         setInterval(createDecoration, 2000);
-        
-        // 樱花效果
-        function createCherryBlossom() {
-            const cherry = document.createElement('div');
-            cherry.className = 'cherry-blossom';
-            cherry.style.left = Math.random() * window.innerWidth + 'px';
-            cherry.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(cherry);
-            
-            setTimeout(() => {
-                cherry.remove();
-            }, 5000);
-        }
-
-        setInterval(createCherryBlossom, 300);
-
-        // 照片轮播
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-
-        setInterval(nextSlide, 3000);
-
-        // 点击效果
-        document.addEventListener('click', function(e) {
-            createHeart(e.clientX, e.clientY);
-        });
-
-        function createHeart(x, y) {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = x + 'px';
-            heart.style.top = y + 'px';
-            heart.innerHTML = '❤';
-            heart.style.color = `rgb(${Math.random()*255},${Math.random()*100},${Math.random()*100})`;
-            document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
-        }
 
         // 音乐控制
+        const bgMusic = document.getElementById('bgMusic');
+        const musicControl = document.querySelector('.music-control');
         let isPlaying = false;
-        const music = document.getElementById('bgMusic');
 
         function toggleMusic() {
-            const musicControl = document.querySelector('.music-control');
             if (isPlaying) {
-                music.pause();
+                bgMusic.pause();
                 musicControl.classList.remove('playing');
             } else {
-                music.play();
+                bgMusic.play();
                 musicControl.classList.add('playing');
             }
             isPlaying = !isPlaying;
-        }
-        // 照片点击放大效果
-        document.querySelectorAll('.timeline-photo img, .gallery img').forEach(img => {
-            img.addEventListener('click', function() {
-                const lightbox = document.querySelector('.lightbox');
-                const lightboxImg = lightbox.querySelector('img');
-                lightboxImg.src = this.src;
-                lightbox.classList.add('active');
-            });
-        });
-
-        document.querySelector('.lightbox').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-            }
-        });
-
-        // 添加触摸手势支持
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.querySelector('.gallery').addEventListener('touchstart', e => {
-            touchStartX = e.touches[0].clientX;
-        });
-
-        document.querySelector('.gallery').addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].clientX;
-            if (touchStartX - touchEndX > 50) {
-                nextSlide();
-            } else if (touchEndX - touchStartX > 50) {
-                prevSlide();
-            }
-        });
-
-        function prevSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
         }
     </script>
 </body>
